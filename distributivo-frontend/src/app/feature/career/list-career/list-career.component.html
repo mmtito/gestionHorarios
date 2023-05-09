@@ -1,0 +1,7 @@
+<div class="flex flex-wrap gap-3">
+  <app-card-career
+    *ngFor="let currentCareer of listCareers"
+    [career]="currentCareer"
+    (emittierId)="openDialog($event)"
+  ></app-card-career>
+</div>

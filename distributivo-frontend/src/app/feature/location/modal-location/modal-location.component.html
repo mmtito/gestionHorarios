@@ -1,0 +1,78 @@
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal">
+
+  <div class="modal-box gap-2 flex-col flex items-center">
+    <form [formGroup]="location" (ngSubmit)="save()">
+      <h3 class="text-center w-full font-bold p-2 border-b-2 text-xl">
+        Nueva ubicacion
+      </h3>
+      <div class="flex flex-col w-full gap-1">
+        <div class="flex w-full flex-col">
+          <label for="">Nombre ubicacion</label>
+          <input class="focus:outline-dotted w-full py-2 bg-gray-300" type="text" formControlName="name"
+            placeholder="Type here" />
+          <div class="text-xs h-3 text-red-400">
+            <div *ngIf="name.invalid">
+              Debe tener mas de 4 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full gap-4 justify-between flex-row">
+          <div class="flex flex-col">
+            <label for="">Altitud</label>
+            <input 
+            min="0"
+            class="p-2 focus:outline-dotted bg-gray-300" 
+            type="number" 
+            placeholder="Type here"
+              formControlName="longitude" />
+            <div class="text-xs h-3 text-red-400">
+              <div *ngIf="longitude.invalid">
+                Debe tener mas de 10 caracteres
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            
+            <label for="">Latitud</label>
+            <input 
+            min="0" 
+            class="p-2 focus:outline-dotted bg-gray-300" 
+            type="number"
+              placeholder="Type here" formControlName="latitude" 
+              />
+            <div class="text-xs h-3 text-red-400">
+              <div *ngIf="latitude.invalid">
+                Debe tener mas de 10 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex w-full flex-col">
+        <label for="">Descripción</label>
+        <textarea 
+        rows="5" 
+        class="textarea rounded-none bg-gray-300 resize-none leading-3 textarea-ghost"
+          formControlName="description">
+      </textarea>
+        <div class="text-xs h-3 text-red-400">
+          <div *ngIf="description.invalid">
+            Este campo debe tener mas de 10 caracteres
+          </div>
+        </div>
+      </div>
+      <div class="modal-action m-0">
+        <button class="btn w-24 btn-sm btn-ghost border-green-600 bg-green-600">
+          <mat-spinner *ngIf="loading;else aceptar" [diameter]="24"></mat-spinner>
+          <ng-template #aceptar>
+            <p>Aceptar</p>
+          </ng-template>
+        </button>
+        <label class="hidden" for="my-modal"></label>
+        <label (click)="cleanLocation()" class="btn-error btn-sm btn" for="my-modal">Cancelar</label>
+      </div>
+    </form>
+  </div>
+</div>

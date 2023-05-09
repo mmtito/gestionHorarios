@@ -1,0 +1,33 @@
+<input type="checkbox" id="distributive-new" class="modal-toggle" />
+<label for="distributive-new" class="modal cursor-pointer">
+  <label class="modal-box relative w-7/12 max-w-screen-2xl rounded-md  text-[#283c4d]" for="">
+    <h1 class="text-center text-slate-500">Distributivo</h1>
+    <div class="flex justify-evenly mb-5 text-slate-600">
+      <app-autocomplete-grade (select)="handlerChangeGrade($event)">
+      </app-autocomplete-grade>
+      <app-combobox-career
+        [myClass]="'select select-bordered focus:outline-none select-sm focus:border-sky-700 bg-indigo-100  max-w-xs w-36'"
+        (careerSelectEvent)="handlerChangeCareer($event)"></app-combobox-career>
+    </div>
+    <div class="flex justify-evenly mb-5 text-slate-600">
+
+      <app-autocomple-teacher (select)="handlerChangeteacher($event)">
+
+      </app-autocomple-teacher>
+
+      <app-combobox-school-period (periodSelectEvent)="handlerChangePeriodo($event)"
+        [myClass]="'select select-bordered focus:outline-none select-sm focus:border-sky-700 bg-indigo-100  max-w-xs w-36'">
+      </app-combobox-school-period>
+    </div>
+    <div class="flex justify-center mb-5 text-slate-600">
+      <app-autocomplete-subject (select)="handlerChangeCouse($event)">
+
+      </app-autocomplete-subject>
+    </div>
+    <div class="flex justify-center">
+      <label for="distributive-new"
+        class="btn btn-sm  btn-wide btn-ghost border-green-600 bg-green-600 text-xs text-white"
+        (click)="save()">enviar</label>
+    </div>
+  </label>
+</label>

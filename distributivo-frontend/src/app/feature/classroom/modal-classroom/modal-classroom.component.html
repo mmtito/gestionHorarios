@@ -1,0 +1,95 @@
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box rounded-md w-96 flex-col gap-2 flex items-center">
+    <form [formGroup]="classroom" (ngSubmit)="saveOrUpdate()">
+      <h3 class="text-center w-full font-bold border-b-2 text-xl">
+        {{ !id.value ? 'Nueva Aula ' : "Editar Aula " + name.value }}
+      </h3>
+      <div class="flex flex-col w-full gap-x-4-2">
+
+        <div class="flex w-full gap-1 justify-between flex-row">
+          <div class="flex w-full flex-col">
+            <label for="">Nombre aula</label>
+            <input formControlName="name" name="name" class="focus:outline-dotted w-full py-2 bg-gray-300" type="text"
+              placeholder="Type here" />
+            <div class="text-xs h-3 text-red-400">
+              <div *ngIf="name.invalid">
+                Debe tener mas de 4 caracteres
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex flex-col">
+            <label for="">Capacidad</label>
+            <input 
+            min="0"
+            formControlName="capacity" 
+            class="focus:outline-dotted w-16 p-2 bg-gray-300" type="number"
+              placeholder="Type here" />
+            <div class="w-full"></div>
+            <div class="text-xs h-3 text-red-400">
+              <div *ngIf="capacity.invalid">
+                Invalido
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     <!--<div class="flex w-full flex-col">
+        <label for="">Codigo aula</label>
+        <input formControlName="code" class="focus:outline-dotted w-full py-2 bg-gray-300" type="text"
+          placeholder="Type here" />
+        <div class="text-xs h-3 text-red-400">
+          <div *ngIf="code.invalid">
+            Debe tener mas de 2 caracteres
+          </div>
+        </div>
+      </div>
+    -->
+      <div class="flex flex-col w-full gap-x-4-2">
+        <div class="flex w-full gap-1 justify-between flex-row">
+          <div class="flex w-full flex-col">
+            <label for="">Location</label>
+            <app-location-combobox myClass="w-full" (locationEventEmittier)="addLocation($event)"></app-location-combobox>
+          </div>
+   
+
+        </div>
+      </div>
+      <div class="flex w-full flex-col">
+        <label for="">Description</label>
+        <textarea formControlName="description" rows="5"
+          class="textarea rounded-none bg-gray-300 resize-none leading-3 textarea-ghost">
+      </textarea>
+        <div class="text-xs h-3 text-red-400">
+          <div *ngIf="description.invalid">
+            Este campo debe tener minimo 10 caracteres
+          </div>
+        </div>
+      </div>
+      <div class="modal-action m-0">
+        <button type="submit" 
+        mat-raised-button color="primary"
+        class="w-20"
+        >
+        <div
+        *ngIf="loading; else aceptar"
+        class="flex w-full justify-center" >
+          <mat-spinner [diameter]="24" color="warn" ></mat-spinner>
+        </div>
+         <ng-template #aceptar>
+            <p>Aceptar</p>
+          </ng-template>
+        </button>
+        <label class="hidden" id="close-modal" for="my-modal"></label>
+        <button (click)="ca.click()" mat-raised-button color="warn" >
+          Cancelar
+        <label #ca  for="my-modal" class="hidden" ></label>
+      </button>
+      </div>
+    </form>
+  </div>
+</div>
+

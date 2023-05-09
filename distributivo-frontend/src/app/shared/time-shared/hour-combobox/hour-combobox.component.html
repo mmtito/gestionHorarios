@@ -1,0 +1,8 @@
+<select #hour (change)="onSelect(hour.value)" class="p-2 w-full text-gray-600 outline-none border-none active:outline-none focus:outline-none" name="" id="">
+    <option value="" selected>
+      Hora
+    </option>
+    <option *ngFor="let hour of hours" [value]="hour.id"
+    [selected]="hourId ==hour.id"
+    >{{hour.hour}}</option>
+  </select>

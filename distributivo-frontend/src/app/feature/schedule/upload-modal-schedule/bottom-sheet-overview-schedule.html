@@ -1,0 +1,32 @@
+<mat-nav-list>
+  <mat-list-item (click)="downloadFile()">
+    <span matListItemTitle>xssl</span>
+    <span matLine>Descargar modelo</span>
+  </mat-list-item>
+
+  <a (click)="scheduleExcel.click()" mat-list-item>
+    <span matListItemTitle>local</span>
+    <span matLine>Elegir archivo</span>
+    <input #scheduleExcel class="hidden" id="file_input" type="file">
+
+  </a>
+
+  <mat-list-item>
+    <span matListItemTitle>
+
+      <button class="w-32" (click)="importSchedules(scheduleExcel)" mat-raised-button color="primary">
+        <div
+        *ngIf="loading; else aceptar"
+        class="flex w-full p-1 justify-center" >
+          <mat-spinner [diameter]="26" color="warn" ></mat-spinner>
+        </div>
+         <ng-template #aceptar>
+            <p>Importar</p>
+          </ng-template>
+
+      </button>
+    </span>
+    <span matLine>Cargar al servidor</span>
+
+  </mat-list-item>
+</mat-nav-list>

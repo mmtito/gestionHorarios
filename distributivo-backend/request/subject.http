@@ -1,0 +1,46 @@
+@tokeen=Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRlciIsImV4cCI6MTc0ODQ3NzQ1Nywicm9sIjoiVElNRS1EQVlfSU1QT1JUQVItRVhDRUwifQ.RcS9xXWPHp5u4BXil8Q6gmIqGOTsHpppLWznLnkwGLEHuaW6JunAHjDZHqhqEmWQdBmaf0zddPLV_kouO09I4g
+@type = application/json
+@url = http://localhost:8080/api/subject
+
+###
+GET {{url}}
+Authorization:{{tokeen}}
+
+###
+GET {{url}}/select/progra
+Authorization:{{tokeen}}
+###
+GET {{url}}/findAll
+Authorization:{{tokeen}}
+###
+POST {{url}}
+Authorization:{{tokeen}}
+Content-Type:{{type}}
+
+{
+  
+   "name" : "",
+ 
+   "capacity" : null 
+}
+
+###
+PUT {{url}}
+Authorization:{{tokeen}}
+Content-Type:{{type}}
+
+{
+   "id" : 5, 
+   "name" : "change",
+   "location" : 3,
+   "capacity" : null 
+}
+
+
+
+
+
+
+###
+GET {{url}}/export-to-excel
+Authorization:{{tokeen}}

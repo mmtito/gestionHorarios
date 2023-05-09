@@ -1,0 +1,71 @@
+<table class="table  w-full text-xs table-compact" >
+    <thead class="-500 text-start" >
+        <th class=" text-start" >
+           ID
+        </th>
+        <th class=" text-start" >
+           NAME
+        </th>
+        <th class="text-start " >
+            USERNAME
+             </th>
+        <th class=" text-start" >
+           CONTRASENA
+        </th>
+      
+        <th class="flex justify-center" >
+            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"
+            class='w-5 h-5 fill-red-400'>
+            <path d="M12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z" />
+            <path
+                d="M21.294,13.9l-.444-.256a9.1,9.1,0,0,0,0-3.29l.444-.256a3,3,0,1,0-3-5.2l-.445.257A8.977,8.977,0,0,0,15,3.513V3A3,3,0,0,0,9,3v.513A8.977,8.977,0,0,0,6.152,5.159L5.705,4.9a3,3,0,0,0-3,5.2l.444.256a9.1,9.1,0,0,0,0,3.29l-.444.256a3,3,0,1,0,3,5.2l.445-.257A8.977,8.977,0,0,0,9,20.487V21a3,3,0,0,0,6,0v-.513a8.977,8.977,0,0,0,2.848-1.646l.447.258a3,3,0,0,0,3-5.2Zm-2.548-3.776a7.048,7.048,0,0,1,0,3.75,1,1,0,0,0,.464,1.133l1.084.626a1,1,0,0,1-1,1.733l-1.086-.628a1,1,0,0,0-1.215.165,6.984,6.984,0,0,1-3.243,1.875,1,1,0,0,0-.751.969V21a1,1,0,0,1-2,0V19.748a1,1,0,0,0-.751-.969A6.984,6.984,0,0,1,7.006,16.9a1,1,0,0,0-1.215-.165l-1.084.627a1,1,0,1,1-1-1.732l1.084-.626a1,1,0,0,0,.464-1.133,7.048,7.048,0,0,1,0-3.75A1,1,0,0,0,4.79,8.992L3.706,8.366a1,1,0,0,1,1-1.733l1.086.628A1,1,0,0,0,7.006,7.1a6.984,6.984,0,0,1,3.243-1.875A1,1,0,0,0,11,4.252V3a1,1,0,0,1,2,0V4.252a1,1,0,0,0,.751.969A6.984,6.984,0,0,1,16.994,7.1a1,1,0,0,0,1.215.165l1.084-.627a1,1,0,1,1,1,1.732l-1.084.626A1,1,0,0,0,18.746,10.125Z" />
+        </svg>
+         </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userService.listUsers.users" class="border-b-2" >
+            <td class="">
+                {{user.id}}
+            </td>
+            <td class="" >
+                {{user.name}}
+            </td>
+            <td class="" >
+                {{user.username}}
+            </td>
+            <td class="" >
+                no disponible
+            </td>
+            <td class=" flex flex-wrap justify-center" >
+                <label (click)="setCurrentId(user.id)" class="cursor-pointer" for="my-modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg>
+                </label>
+                |
+                <label (click)="openDialog(user.id)" class="cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-x-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6.854 7.146 8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 1 1 .708-.708z"/>
+                      </svg>
+                </label>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+ <app-modal-user [currentId]="this.currentId" ></app-modal-user>
+
+<!-- The button to open modal -->
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal1" class="modal-toggle" />
+<div class="modal left-96 bg-opacity-0">
+  <div class="modal-box text-sm rounded-md py-1 w-52 shadow-md border-t-2 h-fit">
+    <p class="font-bold text-gray-600 text-center m-0">Estas seguro de eliminar?</p>
+    <div class="modal-action flex flex-wrap justify-center m-0 ">
+      <label (click)="delete()" for="my-modal1" class="btn text-xs btn-xs btn-primary">Aceptar</label>
+      <label (click)="removeCurrentId()" for="my-modal1" class="btn text-xs btn-xs btn-warning">Cancelar</label>
+    </div>
+  </div>
+</div>

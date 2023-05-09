@@ -1,0 +1,113 @@
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-grade" class="modal-toggle" />
+<div class="modal">
+      
+  <div class="modal-box gap-2 rounded-md flex-col flex">
+    <form [formGroup]="grade" (ngSubmit)="saveOrUpdate()" >
+    <h3 class="text-center w-full font-bold border-b-2 text-xl">
+      Nueva curso
+    </h3>
+
+    <div class="flex justify-center items-center w-full gap-2 flex-col gap-y-4 flex-wrap">
+      <div class="flex w-full gap-2">
+        <div class="w-full">
+          <label class="block" for="">Nombre</label>
+          <input 
+          name="name" 
+          class="focus:outline-dotted w-full py-3 bg-gray-300" 
+          formControlName="name"
+          type="text" />
+          <div class="text-xs h-3 text-red-400">
+            <div *ngIf="name.invalid">
+              Debe tener mas de 4 caracteres
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="block" for="">Carrera</label>
+          <app-combobox-career [myClass]="'select bg-gray-300 w-24 rounded-none'" [careerId]="career.value"
+            (careerSelectEvent)="addCareer($event)">
+          </app-combobox-career>
+          <div class="text-xs h-3 text-red-400">
+            <div *ngIf="career.invalid">
+              Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-1 flex-row w-full justify-between flex-wrap">
+        <div class="flex flex-col">
+          <label for="">Nivel</label>
+          <select 
+          formControlName="level"
+          class="select h-[20px] bg-gray-300 rounded-none">
+            <option value="1">PRIMERO</option>
+            <option value="2">SEGUNDO</option>
+            <option value="3">TERCERO</option>
+            <option value="4">CUARTO</option>
+            <option value="5">QUINTO</option>
+          </select>
+          <div class="text-xs h-3 text-red-400">
+            <div *ngIf="level.invalid">
+              requerido
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <label for="">Paralelo</label>
+          <select 
+          formControlName="parallel"
+          class="select h-[20px]  bg-gray-300 rounded-none"
+          >
+            <option value="6">A</option>
+            <option value="7">B</option>
+            <option value="8">C</option>
+            <option value="9">D</option>
+          </select>
+          <div class="text-xs h-3 text-red-400">
+            <div *ngIf="parallel.invalid">
+              requerido
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <label for="">Jornada</label>
+          <select 
+          formControlName="workingDay"
+          class="select h-[20px] bg-gray-300 rounded-none">
+            <option value="10">Matutina</option>
+            <option value="11">Vespertina</option>
+            <option value="12">Nocturna</option>
+          </select>
+
+          <div class="text-xs h-3 text-red-400">
+            <div *ngIf="workingDay.invalid">
+              requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-action m-0">
+
+        <button type="submit" class="btn w-24 btn-sm btn-ghost border-green-600 bg-green-600"
+        for="my-modal-grade">
+      
+        <mat-spinner *ngIf="loading; else aceptar" diameter="24" ></mat-spinner>
+
+        <ng-template #aceptar>
+          <p>Aceptar</p>
+        </ng-template>
+
+      </button>
+        
+        <label class="hidden"
+          for="my-modal-grade">Aceptar</label>
+        <label (click)="clearGrade()" class="btn-error btn-sm btn" for="my-modal-grade">Cancelar</label>
+      </div>
+    </div>
+  </form>
+
+  </div>
+</div>

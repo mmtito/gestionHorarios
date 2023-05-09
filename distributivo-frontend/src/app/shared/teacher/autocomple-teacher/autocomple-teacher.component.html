@@ -1,0 +1,18 @@
+<div class="custom-wrapper-example" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+  <input
+    matInput
+    placeholder="seleccione el profesor"
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+    [matAutocompleteConnectedTo]="origin"
+    class="input input-bordered focus:outline-none select-sm focus:border-sky-700 bg-indigo-100  input-sm "
+    >
+</div>
+
+<mat-autocomplete (optionSelected)="onSelect($event.option.value)" #auto="matAutocomplete">
+  <mat-option *ngFor="let option of filteredOptions" [value]="option.name +' '+ option.lastname+ '('+option.id +')'">{{option.name}}
+ 
+    {{option.lastname}}
+
+  </mat-option>
+</mat-autocomplete>

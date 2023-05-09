@@ -1,0 +1,63 @@
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal">
+
+  <div class="modal-box gap-2 flex-col flex">
+    <form [formGroup]="teacherConfiguration" (ngSubmit)="save()">
+      <h3 class="text-center w-full font-bold p-2 border-b-2 text-xl">
+        Nuevo Configuracion
+      </h3>
+      <div class="flex flex-col w-full gap-1">
+        <div class="flex w-full flex-col">
+          <label for="">Docente</label>
+          <app-teacher-combobox 
+          (emittierTeacher)="addTeacher($event)"
+          [myClass]="'p-2 w-full text-gray-600 outline-none border-none active:outline-none focus:outline-none'"  
+          >
+           </app-teacher-combobox>
+          <div class="text-xs h-3 text-red-400">
+            <div *ngIf="teacher.invalid">
+              Debe tener mas de 4 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full gap-4 justify-between flex-row">
+          <div class="flex flex-col">
+            <label for="">Hora </label>
+            <app-hour-combobox 
+            (select)="addHour($event)"
+            ></app-hour-combobox>
+            <div class="text-xs h-3 text-red-400">
+              <div *ngIf="hour.invalid">
+                Este campo es requerido
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+
+            <label for="">dia</label>
+            <app-day-combobox
+            (select)="addDay($event)"
+            ></app-day-combobox>
+            <div class="text-xs h-3 text-red-400">
+              <div *ngIf="day.invalid">
+                Este campo es requrido
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-action mt-3">
+        <button class="btn w-24 btn-sm btn-ghost border-green-600 bg-green-600">
+          <mat-spinner *ngIf="loading;else aceptar" [diameter]="24"></mat-spinner>
+          <ng-template #aceptar>
+            <p class="text-white">Aceptar</p>
+          </ng-template>
+        </button>
+        <label class="hidden" for="my-modal"></label>
+        <label (click)="cleanConfiguration()" class="btn-error btn-sm btn" for="my-modal">Cancelar</label>
+      </div>
+    </form>
+  </div>
+</div>

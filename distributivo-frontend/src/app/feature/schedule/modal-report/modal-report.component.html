@@ -1,0 +1,79 @@
+<label for="modal-report-calendar"
+  class="h-full flex items-center buttonface text-center hover:bg-gray-200 p-2 text-gray-600 rounded cursor-pointer">
+  Imprimir
+</label>
+<input type="checkbox" id="modal-report-calendar" class="modal-toggle" />
+<div class="modal rounded-none">
+  <div
+    class="modal-box max-w-[1000px] flex flex-col relative bg-white w-[720px] h-fit scroll-ander invicible-scroll-ander rounded-sm leading-none">
+
+    <label for="modal-report-calendar"
+      class=" rounded-sm text-white bg-red-500 py-1 px-3 cursor-pointer text-lg absolute right-2 top-2">✕</label>
+    <br>
+    <br>
+    <form [formGroup]="optprint" (ngSubmit)="onPrint()">
+      <div class="flex flex-wrap gap-2  flex-col">
+        <h2 class="font-bold text-lg">Opciones de imprimir</h2>
+        <p class="">Elija el tipo de categoria que desea imprimir</p>
+
+        <select formControlName="entity"
+          class="p-2 text-gray-600 w-full outline-none border-none active:outline-none focus:outline-none">
+          <option [selected]="entity == ''" value="">
+            No seleccionado
+          </option>
+          <option [selected]="entity.value == 'room'" value="room">
+            Aula
+          </option>
+          <option [selected]="entity.value == 'teacher'" value="teacher">
+            Docente
+          </option>
+          <option [selected]="entity.value == 'grade'" value="grade">
+            Curso
+          </option>
+        </select>
+
+        <p>Elija el aula a la que desea imprimir</p>
+        <app-grade-combobox (changeGradeEmittier)="addEntity($event)" *ngIf="entity.value == 'grade'"
+          [myClass]="'p-2 w-full text-gray-600 outline-none border-none active:outline-none focus:outline-none'">
+        </app-grade-combobox>
+        <app-classroom-combobox (classroomSelectEvent)="addEntity($event)"
+          *ngIf="entity.value == 'room'"></app-classroom-combobox>
+        <app-teacher-combobox (emittierTeacher)="addEntity($event)" *ngIf="entity.value == 'teacher'"
+          [myClass]="'p-2 w-full text-gray-600 outline-none border-none active:outline-none focus:outline-none'">
+          >
+
+        </app-teacher-combobox>
+        <select *ngIf="entity.value ==''"
+          class="p-2 text-gray-600 w-full outline-none border-none active:outline-none focus:outline-none">
+          <option value="">
+            No seleccionado
+          </option>
+        </select>
+        <div class="flex flex-wrap items-center">
+          <p>Elija fecha desde y hasta</p>
+
+          <app-date-picker (changeDate)="addRange($event)" class="ml-auto"></app-date-picker>
+        </div>
+
+      </div>
+
+
+      <br>
+      <button [disabled]="entity.invalid || id.invalid ||id.start || end.invalid || loading"
+        class=" w-full" type="submit" mat-raised-button color="primary">
+
+        <div class="flex justify-center" *ngIf="loading;else imprimir">
+          <mat-spinner diameter="29"></mat-spinner>
+        </div>
+
+        <ng-template #imprimir>
+
+          <p>Imprimir</p>
+
+        </ng-template>
+
+      </button>
+      <label id="active-report-calendar" for="modal-report-calendar" class="hidden"></label>
+    </form>
+  </div>
+</div>
